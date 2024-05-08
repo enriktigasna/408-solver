@@ -1,0 +1,306 @@
+DEFINITIONS:
+Digraph = A pair of 2 letters, useful to look for repeated digraphs to analyze the cipher text.
+Frequency analysis = Analyzing the frequency of each letter in the cipher text.
+String repeating analysis = Analyzing how many times a certain string repeats in the cipher text.
+
+
+Step 1.
+Assign ASCII values to each symbol
+and then create an ASCII matrix.
+
+This will be incredibly tedious, but it will be useful for the next steps.
+
+
+Shapes:
+
+Hollow triangle: 0
+Half-filled square with white in top left: 1
+Half-filled square with white in top right: 2
+Fully filled square: 3
+Hollow square with black dot in center: 4
+Hollow square: 5
+Fully filled circle: 6
+Fully filled triangle: 7
+Hollow triangle with dot in middle: 8
+
+Slash: /
+Backward slash, might cause errors if i use real: 9
+
+Lambda: ^
+Hollow circle with dot: o
+
+
+Zodiac symbols:
+horizontal line: -
+plus: +
+vertical line: |
+
+ACTUAL PLUS: a
+
+I-looking thing with bottom kinda round: w
+
+Almost t looking thing?: x
+
+
+Letters:
+Forwards: CAPITAL
+Backwards: lowercase
+
+Decoding:
+01P/Z/UB1kOR2pX2B
+WV+eGYFo0HP4KwqYe
+MJY^UIk8qTtNQYD6|
+S-/03BPORAU2fRlqE
+k^LMZJdr9pFHVWe7Y
+4aqGD0KI|oqX86+S-
+RNtIYElO7qGBTQS3B
+Ld/P3B4XqEHMU^RRk
+cZKqpI|WqI86LMr03
+BPDRax2o9N-eEUHkF
+ZcpOVWI6atL|l^RoH
+I0DR5TYr9de/4XJQA
+P6M7RUt1L|NVEKH2G
+rIwJk604LMlNA|Z-P
++UpkA03BVW9aVTtOP
+^2SrlfUeo8D+G11IM
+Nk|ScE/011ZfAP5BV
+peXqWq5F37ca40A0B
+1OT6RUca5dYq5^SqW
+VZeGYKE5TYA013Lt5
+HwFBX0+XADd98Lw2q
+5ed33oe6PORXQF1Gc
+Z5JTaq57JIarBPQWo
+VEXr0WIoqEHM|2UIk
+
+This took me a while
+
+
+Now I need to make sure it's correct, i'm gonna go through all of the
+charachters and make sure they're in the right place
+
+I did a decent look around for a few rows, a few charachters and the borders.
+It seems to check out, at least to a 90-95% certainty, which would be enough to crack it
+
+
+Time to do the script
+
+First I created a key_applier key. Once I figure out a letter in the key, I can apply it to the rest of the text.
+
+
+Now I need to find out more about the cipher, I'm going to create a frequency analysis of the cipher text.
+
+Then I'm going to create a string repeating analysis. See how many times certain strings repeat in the cipher text.
+
+I found 47 digraphs in the cipher text. For the sake of intrigue I'm gonna create a simulator that simulates the digraphs in random texts.
+
+Okay so I got a bit sidetracked so I made a graph aswell, which looks like a normal distribution.
+
+11 .
+14 .
+15 ......
+16 .........
+17 ...............
+18 ...............................
+19 .............................
+20 ............................................
+21 ..............................................................
+22 .....................................................................
+23 ..........................................................................
+24 ..............................................................................
+25 ..........................................................................................
+26 .....................................................................................................
+27 ...................................................................................
+28 ............................................................................
+29 ....................................................
+30 ................................................
+31 ..............................
+32 ............................................
+33 ....................
+34 ............
+35 ............
+36 .....
+37 ...
+38 ...
+40 ..
+
+kinda neat
+
+Anyway 47 is clearly wayy above that so it's no coincidence
+
+I ran frequency analysis on it and it seems like the most common letter is q, which I expected, as I was writing it out manually.
+Anyway both by obviously looking at it and by running the frequency analysis, I can make out that it is not a simple 1:1 substitution cipher, but rather, many letters are substituted for the same letter.
+This is a lot more difficult to crack, but still possible.
+
+
+
+On line 16 AND 17 we see 11, or square-square these are the only repeating letters in the text.
+
+ss, ee, tt, ff and ll are the most common repeating letters in the english language.
+We can be pretty sure that there are not a lot of EE, or TT in the cipher text, as they are very common, and would therefore be substituted for different letters.
+
+However SS, FF and LL could be the culprit.
+
+LL would be a very probably culprit given the nature of the text, it could be something like KILL, KILLER or KILLED.
+If it is kill that would give us a lot more info about the text due to that we would find out some surrounding letters aswell.
+
+
+By replacing 1 with L, and the two before letters with KI we get this:
+
+"+": "K"
+"/": "K"
+"0": "I"
+"G": "I"
+"1": "L"
+
+
+Reference save 1
+
+
+By doing this we have come wayy further. And my hypothesis about LL being of only one key was seemingly incorrect since I see some KI which could easily be ending with LL
+
+Although that's more far fetched, i'm gonna fill out some more easy ones for now
+
+like in the beginning it is clearly
+ILIKEKILLING
+
+
+Reference Save 2
+
+Steady progress, it seems like I am on the right path since it seems to be getting gruesome
+
+
+I think this is a semi-decent estimate, although it may be a bit reachy
+
+At save 3 now
+
+Going to try some more wild stuff now
+
+
+Make q E because it's the most common
+
+Save 4
+
+ILIKEKILLINGPEOPLE
+
+in beginning
+
+Going to try
+
+On line 15 GI.L is probably GIRL
+
+
+LINE 18 is definitely PARADICE
+
+Save 5
+
+
+Definitely progress,
+OOn third last line I can already see COLLECTING
+
+Save 6
+
+Current progress,
+
+Although there is trash I want to highlight clearly correct stuff
+
+.COLLECTINGO..LI.
+
+COLLECTING
+
+ILIKEKILLINGPEOPL
+E.KCI..EI.I...A.C
+
+Although ILIKEKILLINGPEOPLE was forced, due to ILIKEKILL and some few letters, it has brought me forwards I feel like
+
+.PARADICE..KILL..
+
+This is a very clean line
+
+
+.OCK.O...
+IT..GIRL.......PI
+
+ROCKSOFFWITHAGIRL
+
+I remembered something about rocks off, and I really can't unsee it now. Maybe slightly cheating, but it's not my fault.
+
+It's not supposed to be a perfect from-scratch solution, obviously I wouldn't have been able to solve it in the 60s as a 17 year old. I definitely use some preexisting knowledge that I remember from it.
+
+
+Save 7
+
+
+Need to export "saves" to another file then just reference them here
+
+did it now in post
+
+
+I.
+E.EN.E.T.R..A.GE.
+.I.G...RROCKSOFFW
+
+BETTERTHANGETTINGYOUR
+
+YCOLLECTINGOF.LI.
+EYFOEAYAFTERLIFEE
+
+In the end I can see some veyr close to real:
+
+I think I have two choices.
+
+Either clean it all up manually, or find what Is 100% right and rewrite it from there
+
+Save 8
+
+Current "saves"
+
+After some more fiddling around I got the final message!
+
+ILIKEKILLINGPEOPL
+EBECAUSEITISSOMUC
+HFUNITISMOREFUNTH
+ANKILLINGWIPDGAME
+INTHEFORRESTBECAU
+SEMANISTHEMOSTEAN
+GERTUEANAMALOFALL
+TOKILLSOMETHINGGI
+VESMETHEMTSTTHRIL
+LINGE.PERENCEITIS
+EVENBETTERTHANGET
+TINGYOURROCKSOFFW
+ITHAGIRLTHEBESTPA
+RTOFITISTHAEWHENI
+EIEIWILLBEREBORNI
+NPARADICESNEALLTH
+EIHAVEKILLEDWIYLB
+ECOMEMYSLAVESIWIL
+LNOTGIVEYOUMYNAME
+BECAUSEYOUWILLTRY
+TOSLOIEOWNORSTOPM
+YCOLLECTINGOFSLAV
+EYFOEMYAFTERLIFEE
+EUSNEWUWSOEGTTSEE
+BEORIETEMETHHPITI
+
+There are some stuff left but I think I can start to decode it it
+
+I LIKE KILLING PEOPLE BECAUSE IT IS SO MUCH FUN
+
+IT IS MORE FUN THAN KILLING WILD GAME IN THE FOREST
+
+BECAUSE MAN IS THE MOST GARGANTUAN ANIMAL OF ALL
+
+TO KILL SOMETHING ????????? THRILLING
+PERENCE?? IT IS MORE FUN THAN GETTING YOUR ROCKS OFF WITH A GIRL
+
+THE BEST PART OF IT IS THAT WHEN I DIE I WILL BE BORN IN PARADICE
+THE I HAVE KILLED WILL BECOME MY SLAVES I WILL NOT GIVE YOU MY NAME BECAUSE YOU WILL TRY TO ?? SLOW ME DOWN ??
+
+OR STOP MY COLLECTING OF SLAVES FOR MY AFTERLIFE
+
+
+Then it was gibberish but I think it was supposed to be at the end
+I think the errors are due to some deciphering errors on my part or ciphering errors on his part.
+Anyway time to write compile this into a nice writeup and publish.
+This was very fun and took me some time to do. Star this if you have come this far.
+
