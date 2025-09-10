@@ -1,4 +1,4 @@
-# Solving Zodiac cipher 408 from scratch.. almost
+# Solving Zodiac cipher 408 from scratch (almost)
 
 In recent days i've been kinda captivated by the zodiac ciphers, and found them to be fascinating. Especially since I have been at the swedish cyber-championships and one of the big topics there is cryptography.
 
